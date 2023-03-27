@@ -6,17 +6,19 @@ import (
 )
 
 func main() {
-	alimentoFunc, err := Animal("cat")
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		alimento, err := alimentoFunc(10)
+	fmt.Println(Promedio(8, 7, 5, 10))
+	/*
+		alimentoFunc, err := Animal("cat")
 		if err != nil {
 			fmt.Println(err)
 		} else {
-			fmt.Println("La cantidad de alimento es", alimento)
-		}
-	}
+			alimento, err := alimentoFunc(10)
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				fmt.Println("La cantidad de alimento es", alimento)
+			}
+		}*/
 }
 
 func Impuesto(salario float64) float64 {
@@ -32,7 +34,7 @@ func Impuesto(salario float64) float64 {
 
 func Promedio(valores ...int) (float64, error) {
 	if len(valores) < 1 {
-		return 0, errors.New("No hay valores a comparar")
+		return 0, errors.New("No hay valores a promediar")
 	}
 	var suma float64 = 0
 	var cuenta int = 0
