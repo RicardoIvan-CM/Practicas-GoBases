@@ -71,7 +71,7 @@ func TestPromedio(t *testing.T) {
 		resultadoObtenido, err := Promedio(valores...)
 
 		//Assert
-		assert.Equal(t, errorEsperado, err, "El error es incorrecto")
+		assert.Equal(t, errorEsperado, err.Error(), "El error es incorrecto")
 		assert.Equal(t, resultadoEsperado, resultadoObtenido, "deben ser iguales")
 	})
 }
