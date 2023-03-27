@@ -6,7 +6,12 @@ import (
 )
 
 func main() {
-	fmt.Println(impuesto(44280))
+	resultado, err := estadisticas("minimum")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(resultado)
+	}
 }
 
 func impuesto(salario float64) float64 {
@@ -20,18 +25,23 @@ func impuesto(salario float64) float64 {
 	return impuesto
 }
 
-func promedio(valores ...int) float64 {
+func promedio(valores ...int) (float64, error) {
+	if len(valores) < 1 {
+		return 0, errors.New("No hay valores a comparar")
+	}
 	var suma float64 = 0
 	var cuenta int = 0
 	for _, valor := range valores {
+		if valor < 0 {
+			return 0, errors.New("No se aceptan valores negativos")
+		}
 		suma += float64(valor)
 		cuenta++
 	}
-	return suma / float64(cuenta)
+	return suma / float64(cuenta), nil
 }
 
-func salario(minutosMes int, categoria string) float64 {
-	var resultado float64
+func salario(minutosMes int, categoria string) (resultado float64, err error) {
 	horas := float64(minutosMes) / 60
 	switch categoria {
 	case "C":
@@ -43,33 +53,46 @@ func salario(minutosMes int, categoria string) float64 {
 		salarioMes := horas * 3000
 		resultado = salarioMes + salarioMes*0.50
 	default:
-		errors.New("No se encontró la categoría")
+		err = errors.New("No se encontró la categoría")
 	}
-	return resultado
+	return
 }
 
-func minimo(valores ...int) float64 {
-	var min int
+func minimo(valores ...int) (float64, error) {
+	if len(valores) < 1 {
+		return 0, errors.New("No hay valores a comparar")
+	}
+	var min int = valores[0]
 	for _, valor := range valores {
-		if min < valor {
+		if valor < 0 {
+			return 0, errors.New("No se aceptan valores negativos")
+		}
+		if valor < min {
 			min = valor
 		}
 	}
-	return float64(min)
+	return float64(min), nil
 }
 
-func maximo(valores ...int) float64 {
+func maximo(valores ...int) (float64, error) {
+	if len(valores) < 1 {
+		return 0, errors.New("No hay valores a comparar")
+	}
 	var max int
 	for _, valor := range valores {
-		if max > valor {
+		if valor < 0 {
+			return 0, errors.New("No se aceptan valores negativos")
+		}
+		if valor > max {
 			max = valor
 		}
 	}
-	return float64(max)
+	return float64(max), nil
 }
 
-/*
-func estadisticas(operacion string) (operacionFunc func(...int) float64,err string){
+func estadisticas(operacion string) (resultado float64, err error) {
+	var operacionFunc func(...int) (float64, error)
+
 	const (
 		minimum = "minimum"
 		average = "average"
@@ -84,12 +107,11 @@ func estadisticas(operacion string) (operacionFunc func(...int) float64,err stri
 	case maximum:
 		operacionFunc = maximo
 	default:
-		return 0
+		err = errors.New("No se encontró la operación")
 	}
 
-	minFunc, err := operation(minimum)
-	averageFunc, err := operation(average)
-	maxFunc, err := operation(maximum)
-
-
-}*/
+	if err == nil {
+		resultado, err = operacionFunc(2, 3, 3, 4, 1, 2, 4, 5)
+	}
+	return resultado, err
+}
