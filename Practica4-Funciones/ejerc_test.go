@@ -214,7 +214,7 @@ func TestAnimal(t *testing.T) {
 		var resultadoEsperado int = 30000
 
 		//Act
-		funcAnimal, err := Animal(tipo)
+		funcAnimal, _ := Animal(tipo)
 		resultadoObtenido, err := funcAnimal(cantidad)
 
 		//Assert
@@ -229,7 +229,7 @@ func TestAnimal(t *testing.T) {
 		var resultadoEsperado int = 15000
 
 		//Act
-		funcAnimal, err := Animal(tipo)
+		funcAnimal, _ := Animal(tipo)
 		resultadoObtenido, err := funcAnimal(cantidad)
 
 		//Assert
@@ -244,7 +244,7 @@ func TestAnimal(t *testing.T) {
 		var resultadoEsperado int = 750
 
 		//Act
-		funcAnimal, err := Animal(tipo)
+		funcAnimal, _ := Animal(tipo)
 		resultadoObtenido, err := funcAnimal(cantidad)
 
 		//Assert
@@ -259,7 +259,7 @@ func TestAnimal(t *testing.T) {
 		var resultadoEsperado int = 450
 
 		//Act
-		funcAnimal, err := Animal(tipo)
+		funcAnimal, _ := Animal(tipo)
 		resultadoObtenido, err := funcAnimal(cantidad)
 
 		//Assert
