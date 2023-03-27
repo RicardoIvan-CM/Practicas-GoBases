@@ -1,4 +1,4 @@
-package main
+package practica2
 
 import "fmt"
 
