@@ -6,11 +6,16 @@ import (
 )
 
 func main() {
-	resultado, err := estadisticas("minimum")
+	alimentoFunc, err := animal("cat")
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		fmt.Println(resultado)
+		alimento, err := alimentoFunc(10)
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			fmt.Println("La cantidad de alimento es", alimento)
+		}
 	}
 }
 
@@ -114,4 +119,56 @@ func estadisticas(operacion string) (resultado float64, err error) {
 		resultado, err = operacionFunc(2, 3, 3, 4, 1, 2, 4, 5)
 	}
 	return resultado, err
+}
+
+func alimentoPerro(cantidad int) (int, error) {
+	if cantidad < 0 {
+		return 0, errors.New("La cantidad debe ser menor a 0")
+	}
+	return 10000 * cantidad, nil
+}
+
+func alimentoGato(cantidad int) (int, error) {
+	if cantidad < 0 {
+		return 0, errors.New("La cantidad no debe ser menor a 0")
+	}
+	return 5000 * cantidad, nil
+}
+
+func alimentoHamster(cantidad int) (int, error) {
+	if cantidad < 0 {
+		return 0, errors.New("La cantidad no debe ser menor a 0")
+	}
+	return 250 * cantidad, nil
+}
+
+func alimentoTarantula(cantidad int) (int, error) {
+	if cantidad < 0 {
+		return 0, errors.New("La cantidad no debe ser menor a 0")
+	}
+	return 150 * cantidad, nil
+}
+
+func animal(tipo string) (alimentoFunc func(int) (int, error), err error) {
+	const (
+		perro     = "dog"
+		gato      = "cat"
+		hamster   = "hamster"
+		tarantula = "tarantula"
+	)
+
+	switch tipo {
+	case perro:
+		alimentoFunc = alimentoPerro
+	case gato:
+		alimentoFunc = alimentoGato
+	case hamster:
+		alimentoFunc = alimentoHamster
+	case tarantula:
+		alimentoFunc = alimentoTarantula
+	default:
+		return nil, errors.New("No se encontró el animal solicitado")
+	}
+
+	return alimentoFunc, nil
 }
