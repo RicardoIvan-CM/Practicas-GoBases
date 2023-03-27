@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	alimentoFunc, err := animal("cat")
+	alimentoFunc, err := Animal("cat")
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -19,7 +19,7 @@ func main() {
 	}
 }
 
-func impuesto(salario float64) float64 {
+func Impuesto(salario float64) float64 {
 	var impuesto float64
 	if salario > 50000 {
 		impuesto += salario * 0.17
@@ -30,7 +30,7 @@ func impuesto(salario float64) float64 {
 	return impuesto
 }
 
-func promedio(valores ...int) (float64, error) {
+func Promedio(valores ...int) (float64, error) {
 	if len(valores) < 1 {
 		return 0, errors.New("No hay valores a comparar")
 	}
@@ -46,7 +46,7 @@ func promedio(valores ...int) (float64, error) {
 	return suma / float64(cuenta), nil
 }
 
-func salario(minutosMes int, categoria string) (resultado float64, err error) {
+func Salario(minutosMes int, categoria string) (resultado float64, err error) {
 	horas := float64(minutosMes) / 60
 	switch categoria {
 	case "C":
@@ -63,7 +63,7 @@ func salario(minutosMes int, categoria string) (resultado float64, err error) {
 	return
 }
 
-func minimo(valores ...int) (float64, error) {
+func Minimo(valores ...int) (float64, error) {
 	if len(valores) < 1 {
 		return 0, errors.New("No hay valores a comparar")
 	}
@@ -79,7 +79,7 @@ func minimo(valores ...int) (float64, error) {
 	return float64(min), nil
 }
 
-func maximo(valores ...int) (float64, error) {
+func Maximo(valores ...int) (float64, error) {
 	if len(valores) < 1 {
 		return 0, errors.New("No hay valores a comparar")
 	}
@@ -95,7 +95,7 @@ func maximo(valores ...int) (float64, error) {
 	return float64(max), nil
 }
 
-func estadisticas(operacion string) (resultado float64, err error) {
+func Estadisticas(operacion string) (resultado float64, err error) {
 	var operacionFunc func(...int) (float64, error)
 
 	const (
@@ -106,11 +106,11 @@ func estadisticas(operacion string) (resultado float64, err error) {
 
 	switch operacion {
 	case minimum:
-		operacionFunc = minimo
+		operacionFunc = Minimo
 	case average:
-		operacionFunc = promedio
+		operacionFunc = Promedio
 	case maximum:
-		operacionFunc = maximo
+		operacionFunc = Maximo
 	default:
 		err = errors.New("No se encontró la operación")
 	}
@@ -121,35 +121,35 @@ func estadisticas(operacion string) (resultado float64, err error) {
 	return resultado, err
 }
 
-func alimentoPerro(cantidad int) (int, error) {
+func AlimentoPerro(cantidad int) (int, error) {
 	if cantidad < 0 {
 		return 0, errors.New("La cantidad debe ser menor a 0")
 	}
 	return 10000 * cantidad, nil
 }
 
-func alimentoGato(cantidad int) (int, error) {
+func AlimentoGato(cantidad int) (int, error) {
 	if cantidad < 0 {
 		return 0, errors.New("La cantidad no debe ser menor a 0")
 	}
 	return 5000 * cantidad, nil
 }
 
-func alimentoHamster(cantidad int) (int, error) {
+func AlimentoHamster(cantidad int) (int, error) {
 	if cantidad < 0 {
 		return 0, errors.New("La cantidad no debe ser menor a 0")
 	}
 	return 250 * cantidad, nil
 }
 
-func alimentoTarantula(cantidad int) (int, error) {
+func AlimentoTarantula(cantidad int) (int, error) {
 	if cantidad < 0 {
 		return 0, errors.New("La cantidad no debe ser menor a 0")
 	}
 	return 150 * cantidad, nil
 }
 
-func animal(tipo string) (alimentoFunc func(int) (int, error), err error) {
+func Animal(tipo string) (alimentoFunc func(int) (int, error), err error) {
 	const (
 		perro     = "dog"
 		gato      = "cat"
@@ -159,13 +159,13 @@ func animal(tipo string) (alimentoFunc func(int) (int, error), err error) {
 
 	switch tipo {
 	case perro:
-		alimentoFunc = alimentoPerro
+		alimentoFunc = AlimentoPerro
 	case gato:
-		alimentoFunc = alimentoGato
+		alimentoFunc = AlimentoGato
 	case hamster:
-		alimentoFunc = alimentoHamster
+		alimentoFunc = AlimentoHamster
 	case tarantula:
-		alimentoFunc = alimentoTarantula
+		alimentoFunc = AlimentoTarantula
 	default:
 		return nil, errors.New("No se encontró el animal solicitado")
 	}
