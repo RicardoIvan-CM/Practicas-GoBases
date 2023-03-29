@@ -1,6 +1,9 @@
 package practica3
 
+/*
 import "fmt"
+
+//Ejercicio 4
 
 func main() {
 	var employees = map[string]int{
@@ -21,3 +24,4 @@ func main() {
 	delete(employees, "Benjamín")
 	fmt.Println(employees)
 }
+*/

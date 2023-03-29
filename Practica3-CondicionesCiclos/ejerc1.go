@@ -1,6 +1,9 @@
 package practica3
 
+/*
 import "fmt"
+
+//Ejercicio1
 
 func main() {
 	cuenta := 0
@@ -12,4 +15,4 @@ func main() {
 	for _, letra := range palabra {
 		fmt.Println(string(letra))
 	}
-}
+}*/

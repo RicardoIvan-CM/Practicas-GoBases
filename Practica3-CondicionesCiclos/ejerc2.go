@@ -1,6 +1,9 @@
 package practica3
 
+/*
 import "fmt"
+
+//Ejercicio 2
 
 func main() {
 	edad := 24
@@ -21,3 +24,4 @@ func main() {
 		}
 	}
 }
+*/
