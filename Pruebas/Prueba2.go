@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"errors"
 	"fmt"
@@ -15,4 +16,4 @@ func main() {
 	e := x()
 	coincidence := errors.Is(e, err1)
 	fmt.Println(coincidence)
-}
+}*/
